@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07101b" />
+    <meta name="description" content="NOVA — browser-based 3D companion robot prototype" />
+    <title>NOVA | Robot Companion</title>
+    <script>
+      // Permanently silence and disable browser Web Speech API (speechSynthesis)
+      // All voice audio in this project is handled exclusively by the Python kiosk pipeline (Kokoro af_bella @ 24 kHz)
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        try {
+          window.speechSynthesis.cancel();
+          window.speechSynthesis.speak = function() {};
+        } catch (e) {}
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
