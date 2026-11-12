@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+.uv_cache/
+.uv_python/
+
+# UV lock
+uv.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Chroma index (rebuilt from kb/ via ingest.py)
+chroma_db/
+
+# Hardware profile (machine-specific, rebuilt via benchmark.py)
+hardware_profile.json
+
+# Runtime logs
+logs/*.jsonl
+
+# Piper models (large binaries, download separately)
+models/*.onnx
+models/*.onnx.json
+
+# Temp files
+*.wav
+*.tmp
+_benchmark_sample.wav
+
+# Offline flag
+offline.flag
+
+# OS files
+.DS_Store
+Thumbs.db
+
+node_modules/
+
+# Model weights and downloads (large; re-fetch with models/download_parakeet.py)
+models/*
+!models/.gitkeep
+!models/download_parakeet.py
+!models/voices.json
+
+# Runtime logs (may contain transcripts)
+logs/*
+!logs/.gitkeep

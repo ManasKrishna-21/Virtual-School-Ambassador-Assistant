@@ -1,0 +1,106 @@
+# Speech-to-Text Glossary Normalization Table
+# Maps canonical terms to common speech-to-text misrecognitions, phonetic errors, or colloquial variants.
+# Normalization is applied case-insensitively using whole-word/phrase boundaries before retrieval.
+
+glossary:
+  Weguide:
+    - "we guide"
+    - "wee guide"
+    - "we-guide"
+    - "wegide"
+    - "v guide"
+    - "we guide ai"
+    - "weguide ai"
+    - "re guide"
+
+  Nova:
+    - "no va"
+    - "noa"
+    - "know va"
+    - "nova robot"
+
+  Oakridge:
+    - "oak ridge"
+    - "oak-ridge"
+    - "oak ridge academy"
+    - "oakridge academy"
+
+  PTM:
+    - "p t m"
+    - "p.t.m."
+    - "parent teacher meeting"
+    - "parent-teacher meeting"
+    - "parents teacher meeting"
+
+  UPI:
+    - "u p i"
+    - "u.p.i."
+    - "unified payments"
+
+  Dr. Evelyn Vance:
+    - "dr vance"
+    - "dr. vance"
+    - "evelyn vance"
+    - "doctor vance"
+    - "principal vance"
+
+  Richard Thorne:
+    - "mr thorne"
+    - "mr. thorne"
+    - "richard thorn"
+    - "vice principal thorne"
+
+  Clara Bennett:
+    - "ms bennett"
+    - "ms. bennett"
+    - "clara benet"
+    - "miss bennett"
+
+  Thomas Wright:
+    - "dr wright"
+    - "dr. wright"
+    - "thomas wright"
+    - "doctor wright"
+
+  Robert Hughes:
+    - "mr hughes"
+    - "mr. hughes"
+    - "robert hews"
+
+  Anita Sharma:
+    - "dr sharma"
+    - "dr. sharma"
+    - "anita sharma"
+    - "doctor sharma"
+
+  Sarah Jenkins:
+    - "ms jenkins"
+    - "ms. jenkins"
+    - "sarah jenkins"
+    - "miss jenkins"
+
+  David O'Connor:
+    - "mr o'connor"
+    - "mr oconnor"
+    - "david o'connor"
+
+  James Chen:
+    - "mr chen"
+    - "mr. chen"
+    - "james chen"
+
+  Meera Nair:
+    - "mrs nair"
+    - "mrs. nair"
+    - "meera nair"
+
+  Maya Patel:
+    - "mrs patel"
+    - "mrs. patel"
+    - "maya patel"
+
+  Nathan Reed:
+    - "mr reed"
+    - "mr. reed"
+    - "nathan reed"
+

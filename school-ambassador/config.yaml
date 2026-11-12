@@ -1,0 +1,105 @@
+# AI School Ambassador Configuration
+
+# General Entity Names
+school_name: "Oakridge International Academy"
+company_name: "Weguide"
+
+# Local LLM Service (Ollama)
+llm:
+  provider: "ollama"
+  base_url: "http://127.0.0.1:11434"
+  model: "qwen2.5:0.5b"  # fallback checkpoint if qwen3.5:0.8b is not present
+  temperature: 0.25
+  max_tokens: 80
+
+# Structure-Aware Chunking
+chunking:
+  max_words: 150
+  overlap_words: 25
+  min_words: 20
+
+# Embedding Model Selection (Auto-selects based on hardware tier)
+embedding:
+  model: "auto"  # "auto", or explicit model identifier
+  primary: "Qwen/Qwen3-Embedding-0.6B"        # Tier A & B (Apache 2.0, 1024-dim, instruction-aware)
+  fallback: "nomic-ai/nomic-embed-text-v1.5" # Tier C (768-dim)
+
+# Retrieval Layer Configuration
+retrieval:
+  k: 3
+  min_similarity: 0.50  # Calibrated cosine similarity threshold (below this triggers fallback)
+  chroma_dir: "chroma_db"
+  kb_dir: "kb"
+  glossary_path: "glossary.yaml"
+  hybrid:
+    enabled: false
+    bm25_k: 60
+
+# Backward compatibility alias for legacy modules
+rag:
+  embedding_model: "Qwen/Qwen3-Embedding-0.6B"
+  chroma_dir: "chroma_db"
+  kb_dir: "kb"
+  k: 3
+  score_floor: 0.50  # Maps to retrieval.min_similarity
+
+# Text-to-Speech (Kokoro-82M af_bella @ 24 kHz)
+tts:
+  engine: "kokoro"
+
+  # Kokoro-82M settings (Apache 2.0, natural 24kHz neural voice - af_bella female voice)
+  kokoro:
+    model_path: "models/kokoro-v0_19.onnx"
+    voices_path: "models/voices.json"
+    voice: "af_bella"   # Female voice (af_bella verified @ 24kHz against STT)
+    speed: 1.0
+    lang: "en-us"
+    sample_rate: 24000
+
+# Audio Hardware Configuration
+audio:
+  input_device: null  # null = auto-detect (prefers Microphone Array over empty 3.5mm jacks)
+
+# Speech-to-Text (Primary: NVIDIA Parakeet TDT 0.6B v3, Fallback: faster-whisper)
+stt:
+  engine: "parakeet"  # "parakeet" (NVIDIA Parakeet TDT 0.6B v3, CC-BY-4.0) or "whisper"
+  parakeet:
+    model_dir: "models/parakeet-tdt-0.6b-v3"
+    encoder: "encoder.int8.onnx"
+    decoder: "decoder.int8.onnx"
+    joiner: "joiner.int8.onnx"
+    tokens: "tokens.txt"
+    num_threads: 4
+  whisper:
+    device: "cpu"
+    compute_type: "int8"
+    language: "en"
+
+# NOVA Companion Robot Integration
+robot:
+  enabled: true
+  api_base_url: "http://127.0.0.1:8000"
+  robot_id: "nova"
+  token: ""
+
+# Query Logging & Data Retention
+logging:
+  log_dir: "logs"
+  retention_days: 30
+
+# Latency Budget (Target ms for Tier B)
+latency_targets_ms:
+  stt: 800
+  retrieval: 100
+  llm: 1200
+  tts: 800
+  playback_overhead: 200
+  total_max: 4000
+
+# Safety Guardrails
+guardrails:
+  enabled: true
+  fallback_message: "I don't have that information -- please check with the school office."
+  decline_message: "I cannot assist with that request. Please contact the school office directly."
+  error_message: "Sorry, something went wrong -- please ask a staff member or try again."
+
