@@ -166,3 +166,34 @@ This project is released under the **Apache‑2.0** license. See the `LICENSE` f
 ---
 
 *Prepared for a GitHub push – all paths are relative to the repository root and the `.gitignore` now excludes `node_modules/`.*
+
+---
+## Setup Notes
+
+1. **Download the speech model** – The Parakeet speech‑to‑text ONNX model is not shipped in the repo. Run the helper script to fetch it:
+   ```bash
+   python school-ambassador/models/download_parakeet.py
+   ```
+   The script downloads `decoder.int8.onnx`, `encoder.int8.onnx`, `joiner.int8.onnx` and `tokens.txt` into `models/parakeet-tdt-0.6b-v3/`.
+
+2. **Configure the robot‑companion frontend** – Create a `.env` file in `robot-companion-prototype/frontend/` from the provided example:
+   ```bash
+   cp robot-companion-prototype/frontend/.env.example robot-companion-prototype/frontend/.env
+   ```
+   Adjust `VITE_API_BASE_URL` if the backend runs on a different host/port.
+
+3. **Rotate backend secrets** – For security, generate a new random API token for the backend service and store it in `robot-companion-prototype/backend/.env`:
+   ```bash
+   # Example (replace with a securely generated secret)
+   echo "API_TOKEN=$(openssl rand -hex 32)" > robot-companion-prototype/backend/.env
+   echo "CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173" >> robot-companion-prototype/backend/.env
+   ```
+   This overwrites any existing token that may have been present on this machine.
+
+4. **(Optional) Verify the environment** – After the above steps, run:
+   ```bash
+   python -m pipeline   # should start without missing‑model errors
+   ```
+   If the pipeline prints the loaded embedding model and the Kokoro TTS configuration, the setup is complete.
+
+---
