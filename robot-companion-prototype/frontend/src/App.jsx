@@ -107,14 +107,23 @@ function RobotModel({ command, onReady }) {
   const init = useRef(false);
 
   const mat = useMemo(() => ({
-    body:  new THREE.MeshStandardMaterial({ color: '#ccd9e8', metalness: 0.58, roughness: 0.28 }),
-    bodyD: new THREE.MeshStandardMaterial({ color: '#a8bccf', metalness: 0.62, roughness: 0.3  }),
-    dark:  new THREE.MeshStandardMaterial({ color: '#1e2d3d', metalness: 0.82, roughness: 0.28 }),
-    joint: new THREE.MeshStandardMaterial({ color: '#3d5770', metalness: 0.88, roughness: 0.22 }),
+    // Primary shell – satin‑finish pearl white (soft matte)
+    body:  new THREE.MeshStandardMaterial({ color: '#f5f5f5', metalness: 0.1, roughness: 0.35 }),
+    // Secondary panels – deep charcoal accent
+    bodyD: new THREE.MeshStandardMaterial({ color: '#222222', metalness: 0.6, roughness: 0.45 }),
+    // Dark internal surfaces (e.g., inside torso)
+    dark:  new THREE.MeshStandardMaterial({ color: '#1e2d3d', metalness: 0.8, roughness: 0.28 }),
+    // Joint caps – subtle midnight navy
+    joint: new THREE.MeshStandardMaterial({ color: '#001f3f', metalness: 0.8, roughness: 0.2 }),
+    // Visor glass – dark, low‑specular
     glass: new THREE.MeshPhysicalMaterial({ color: '#060f1a', metalness: 0.22, roughness: 0.1, clearcoat: 1, clearcoatRoughness: 0.06 }),
-    cyan:  new THREE.MeshStandardMaterial({ color: '#5ef5ff', emissive: '#0dc8e8', emissiveIntensity: 2.8, metalness: 0.2, roughness: 0.18 }),
-    blue:  new THREE.MeshStandardMaterial({ color: '#88aaff', emissive: '#3d66ff', emissiveIntensity: 2.0, metalness: 0.3,  roughness: 0.2  }),
-    eye:   new THREE.MeshStandardMaterial({ color: '#c2feff', emissive: '#28f0ff', emissiveIntensity: 4.5, roughness: 0.14 }),
+    // Accent cyan‑teal emission (eyes, antenna orb, chest core)
+    cyan:  new THREE.MeshStandardMaterial({ color: '#4fd1e0', emissive: '#7ff0ff', emissiveIntensity: 3.0, metalness: 0.0, roughness: 0.2 }),
+    // Optional secondary blue – kept for subtle highlights
+    blue:  new THREE.MeshStandardMaterial({ color: '#88aaff', emissive: '#3d66ff', emissiveIntensity: 2.0, metalness: 0.3, roughness: 0.2 }),
+    // Eyes – bright cyan with strong emissive punch
+    eye:   new THREE.MeshStandardMaterial({ color: '#c2feff', emissive: '#5ef5ff', emissiveIntensity: 4.5, roughness: 0.14 }),
+    // Visor – almost black glass
     visor: new THREE.MeshStandardMaterial({ color: '#040d14', metalness: 0.7,  roughness: 0.15 }),
   }), []);
 
